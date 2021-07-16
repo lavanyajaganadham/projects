@@ -1,0 +1,266 @@
+insert into hostel values(&hostel_id,&no_of_rooms,&no_of_students,'&location','&hostel_name','&hostel_type');
+insert into hostel values( 301      ,    60  ,          240, 'street 1' ,'roja'  ,          'girls');
+  insert into hostel values(     302    ,      70   ,         280 ,'street 2' ,  'malligai' ,       'girls');
+  insert into hostel values(     303    ,      50   ,         150, 'street 3' ,  'mullai'  ,        'girls');
+   insert into hostel values(    304    ,      60   ,         180, 'street 4' ,  'chembaruthi',     'boys');
+      insert into hostel values( 305    ,      50   ,         200, 'street 5',   'tamarai'  ,       'boys');
+      insert into hostel values( 306    ,      60   ,         240, 'street 6' ,  'kuringi',         'boys');
+
+
+insert into hostel_employee values(&hostel_incharge_id,&hostel_id,'&name','&address',&mobile_no,'&gender');
+
+insert into hostel_employee values(		 501   ,     301 ,'Jyothi'     ,          'chennai'   ,  7865765473 ,	'f');
+insert into hostel_employee values(               502  ,      302, 'Leelavathi' ,          'Arakonam'  ,  8897656433 ,	'f');
+insert into hostel_employee values(               503  ,      303 ,'Hymavathi'  ,          'tiruttani' ,  9878675463 ,	'f');
+insert into hostel_employee values(               504  ,      304, 'Chandramohan' ,        'salem'  ,     9897989887 ,	'm');
+ insert into hostel_employee values(              505  ,      305, 'Rajkumar'   ,          'tiruvallur',  6574657421 ,	'm');
+ insert into hostel_employee values(              506  ,      306, 'Suresh'     ,          'Erode'    ,   8987865764 ,	'm');
+
+set linesize 160;
+set wrap off;
+
+
+insert into mess_employee values(&mess_incharge_id,'&name','&address',&mobile_no,'&gender');
+
+insert into mess_employee values( 201 ,'bhasker'  ,            'tiruvallur'  ,                                       7986435797, 'M');
+insert into mess_employee values(             202, 'chandrasekhar',        'chennai' ,                                           9884433998, 'M');
+insert into mess_employee values(             203, 'sunitha'  ,            'kanchipuram'  ,                                      9000366672, 'F');
+insert into mess_employee values(             204, 'sujatha' ,             'pondicherry' ,                                       7765788758, 'F');
+insert into mess_employee values(             205, 'manjula' ,            'chennai' ,                                           6352073840, 'F');
+insert into mess_employee values(             206, 'swarna' ,              'salem'  ,                                            9542200717, 'F');
+insert into mess_employee values(             207, 'shiva prasad' ,        'kanchipuram',                                        9989117127, 'M');
+insert into mess_employee values(             208, 'geetha',               'tiruvallur' ,                                        8342073320, 'F');
+insert into mess_employee values(             209, 'shanthi',              'chennai'  ,                                          9884966865, 'F');
+insert into mess_employee values(             210, 'sujitha' ,             'erode'    ,                                          9030609319, 'F');
+
+
+
+insert into mess values(&mess_id,&mess_expense,'&mess_type');
+
+insert into mess values( 101  ,      24000 ,'veg');
+ insert into mess values(      102  ,      30000 ,'non-veg');
+ insert into mess values(      103  ,      40000, 'non-veg');
+insert into mess values(       104  ,      26000, 'veg');
+
+insert into room values(&room_id,&capacity,&room_occupancy,&hostel_id);
+
+ insert into room values(1001   ,       4        ,      2   ,     301);
+insert into room values(      1002   ,       4   ,           1 ,       301);
+insert into room values(      1101  ,        4   ,           3 ,       302);
+ insert into room values(     1102  ,        4   ,           2 ,       302);
+  insert into room values(    1201  ,        3  ,            2 ,       303);
+ insert into room values(     1202 ,         3  ,            1 ,       303);
+insert into room values(      1301  ,        3  ,            2 ,       304);
+insert into room values(      1302 ,         3  ,            1  ,      304);
+insert into room values(      1401 ,         4   ,           2 ,       305);
+ insert into room values(     1402 ,         4   ,           2 ,       305);
+ insert into room values(     1501  ,        4  ,            1 ,       306);
+insert into room values(1502  ,        4 ,             2 ,       306);
+
+set lines 256;
+set trimout on;
+set tab off;
+
+
+set lines 256;
+set trimout on;
+set tab off;
+set pagesize 100;
+set colsep "|";
+
+
+insert into repairs values('&repair_id','&repair_details','&status','&room_id');
+
+insert into repairs values( 2007, 'fan'         ,    'replaced'         ,     1101);
+insert into repairs values(      2008, 'tubelight'  ,     'not replaced' ,         1102);
+ insert into repairs values(     2009, 'table'      ,     'replaced'   ,           1202);
+insert into repairs values(      2010, 'charger point',   'not replaced' ,         1502);
+insert into repairs values(      2001, 'table '    ,      'replaced'   ,           1002);
+ insert into repairs values(     2002, 'fan'       ,      'replaced'   ,           1001);
+ insert into repairs values(     2003 ,'tubelight'  ,     'not replaced'  ,        1102);
+ insert into repairs values(     2004, 'door lock'  ,     'replaced'   ,           1402);
+ insert into repairs values(     2005, 'fan'         ,    'not replaced' ,         1301);
+ insert into repairs values(     2006, 'charger point',   'not replaced' ,         1302);
+
+
+insert into facilities values(&room_id,&tables,&fans,&tubelights,&chairs,&beds);
+
+
+insert into facilities values(1001     ,     2     ,     2         , 2       ,   4       ,   4);
+insert into facilities values(      1002,          2  ,        2   ,       2  ,        4  ,        4);
+insert into facilities values(      1101,          2 ,         2  ,        2  ,        4  ,        4);
+ insert into facilities values(     1102,          2 ,         2  ,        4  ,        4  ,        4);
+ insert into facilities values(     1201,          2 ,         2  ,        2  ,        3  ,        3);
+insert into facilities values(      1202,          3 ,         2  ,        2  ,        3  ,        3);
+insert into facilities values(      1301,          2 ,         2  ,        2  ,        3  ,        3);
+insert into facilities values(      1302,          3 ,         2  ,        2 ,         3  ,        3);
+insert into facilities values(      1401,          2 ,         2  ,        2 ,         4  ,        4);
+insert into facilities values(      1402,          2 ,         2  ,        2 ,         4  ,        4);
+insert into facilities values(      1501,          3 ,         2 ,         2  ,        4  ,        4);
+insert into facilities values(1502   ,       4     ,     2    ,      2     ,     4     ,     4);
+
+insert into student values(&student_id,'&DOB','&student_name','&father_name','&department',&year,'&address',&mobile_no,'&email_id','&gender',&mess_id,&hostel_id,&room_id);
+insert into student values(20186005,'20-FEB-2000','dhira','rendhar','CSE',2, 'salem',7685943345, 'dhia@gmail.com'   , 'm'     ,   101  ,      304 ,      1301);
+
+insert into student values(20186001,'01-FEB-2000','Adithya','Sudhakar','CSE',2, 'salem',7685943243, 'adithya@gmail.com'   , 'm'     ,   101  ,      304 ,      1301);
+
+insert into student values(20186002,'23-JAN-2000','Arjun','Ramanarao','ECE',2, 'chennai',7283947565, 'arjun@gmail.com'               , 'm'    ,    101  ,      304   ,    1301);
+
+insert into student values(20186003,'21-AUG-2000','Charan','Baskhar','EEE',2, 'kanchipuram',7865432923, 'charan@gmail.com'            ,   'm'   ,     103  ,      304 ,      1302);
+
+insert into student values(20176004,'13-MAR-1999','Dharani','Madhusudhan','CSE',3, 'chennai',7965432145 ,'dharani@gmail.com'          ,    'f'   ,     102  ,      301   ,    1001);
+
+insert into student values(20176005,'23-JUN-1999','Durga','Janarthan','EEE',3 ,'Trichy',7283948562 ,'durga@gmail.com'               , 'f'  ,      102   ,     301  ,     1001);
+
+insert into student values(20186006,'09-NOV-2000','Fathima','Ahmed khan','CIVIL',2, 'Madhurai',6372839103 ,'fathima@gmail.com'         ,     'f'   ,     102 ,       301   ,    1002);
+
+insert into student values(20196007,'14-JUL-2001','Eshwar','Krishakumar','AGRI',1, 'Erode',6276432189, 'eshwar@gmail.com'             , 'm'   ,     103 ,       305  ,     1401);
+
+insert into student values(20196008,'03-OCT-2001','Govind','Ranganatham','IT',1, 'Coimbatore',6945678323, 'govind@gmail.com'           ,    'm'   ,     103,        305,       1401);
+
+insert into student values(20176009,'06-MAR-1999','Hari','Mohanrao','BIO-MED',3 ,'Tiruthani',6758439245, 'hari@gmail.com'              ,   'm'    ,    101   ,     305,       1402);
+
+insert into student values(20176010,'19-FEB-1999','Jagadish','chadrasekhar','Mechanical',3, 'rameswaram',7182736456, 'jagadish@gmail.com'    ,         'm'  ,      101 ,       305  ,     1402);
+
+insert into student values(20196011,'18-AUG-2001','Kamala','Surender','CSE',1 ,'Kanyakumari',7843261534 ,'kamala@gmail.com'              , 'f'   ,     104  ,      302  ,     1101);
+
+insert into student values(20196012,'09-APR-2001','Leela','Ramanaiah','ECE',1, 'salem',6283947561 ,leela@gmail.com              ,  'f'   ,     104 ,       302,       1101);
+
+insert into student values(20196013,'26-SEP-2001','Meena','Nandakishore','MECHANICAL',1 ,'Telangana',6859403721, 'meena@gmail.com'      ,          'f'  ,      102   ,     302  ,     1101);
+
+insert into student values(20196014,'13-MAY-2001','Naina','Padmanath','CIVIL',1 ,'chennai',6298431234 ,'naina@gmail.com'              ,  'f'  ,      104   ,     302  ,     1102);
+
+insert into student values(20196015,'17-DEC-2001','Pallavi','Somesh','ECE',1 ,'kerala',7348254627 ,'pallavi@gmail.com'             , 'f'  ,      102   ,     302 ,      1102);
+
+insert into student values(20166016,'29-MAR-1998','Madhan','kumaraswamy','EEE',4 ,'Madurai',6675842298, 'madhan@gmail.com'            ,  'm'  ,      101  ,      306 ,      1501);
+
+insert into student values(20166017,'05-MAY-1998','Naveen','Vasudev','IT',4 ,'Trichy',8796542353 ,'naveen@gmail.com'              , 'm'  ,      101    ,    306 ,      1502);
+
+insert into student values(20166018,'06-FEB-1998','Pavan','sreenivasulu','CSE',4, 'Erode',6478667893 ,'pavan@gmail.com'              ,  'm',       103   ,     306   ,    1502);
+
+insert into student values(20166019,'04-JAN-1998','Ramya','Kirankumar','EEE',4, 'Pondichery',6789887654 ,'ramya@gmail.com'            ,    'f' ,       104  ,      303 ,      1201);
+
+insert into student values(20166020,'07-SEP-1998','Ruchitha','Ramkumar','BIO-MED',4, 'tiruttani',6575432784 ,'ruchitha@gmail.com'        ,     'f' ,       102  ,      303 ,      1201);
+
+insert into student values(20166021,'01-MAY-1998','Uma','Satish','IT',4 ,'salem',6354657865, 'uma@gmail.com'          ,        'f'  ,      104 ,       303  ,     1202);
+insert into student values( 20196012 ,'09-APR-2001' ,'Leela',      'Ramanaiah',       'ECE'  ,               1, 'salem' ,                         6283947561, 'leela@gmail.com','f' ,104,302 ,1101);
+
+
+insert into outing values(&outing_id,&student_id,'&from_date','&to_date','&reason');
+
+insert into outing values(      4005 ,  20196015 ,'01-JAN-2020', '03-JAN-2020' ,'weekend');
+insert into outing values(      4006 ,  20196007 ,'10-JAN-2020', '12-JAN-2020' ,'weekend');
+insert into outing values(      4007 ,  20176010 ,'14-JAN-2020', '16-JAN-2020', 'festival');
+insert into outing values(      4008 ,  20196012 ,'14-JAN-2020', '16-JAN-2020', 'festival');
+insert into outing values(      4009 ,  20166016, '17-JAN-2020', '19-JAN-2020', 'weekend');
+insert into outing values(      4010 ,  20186003 ,'14-JAN-2020', '16-JAN-2020', 'festival');
+insert into outing values(      4001 ,  20186006 ,'01-JAN-2020', '03-JAN-2020', 'weekend');
+insert into outing values(      4002 ,  20176004 ,'22-JAN-2020', '26-JAN-2020', 'health issue');
+insert into outing values(      4003 ,  20196014 ,'24-JAN-2020' ,'27-JAN-2020', 'holiday');
+insert into outing values(      4004 ,  20166021 ,'27-JAN-2020' ,'30-JAN-2020', 'family occasion');
+
+insert into fee values('&fee_id','&student_id','&amount','&fee_status');
+insert into fee values( 20190001  , 20186004  ,    35000 ,'not paid');
+insert into fee values( 20190001  , 20186001  ,    35000 ,'paid');
+insert into fee values(  20190002 ,  20186002  ,    35000 ,'paid');
+insert into fee values(  20190003 ,  20186003   ,   33000 ,'pending');
+insert into fee values(  20190004 ,  20176004  ,    35000 ,'paid');
+insert into fee values(  20190005 ,  20176005  ,    35000, 'paid');
+insert into fee values(  20190006 ,  20186006  ,    35000, 'pending');
+insert into fee values(  20190007 ,  20196007  ,    33000 ,'paid');
+insert into fee values(  20190008 ,  20196008  ,    33000, 'paid');
+insert into fee values(  20190009 ,  20176009  ,    35000, 'paid');
+insert into fee values(  20190010 ,  20176010  ,    35000 ,'paid');
+insert into fee values(  20190011,   20196011  ,    33000 ,'pending');
+insert into fee values( 20190012 ,  20196012  ,    33000 ,'paid');
+insert into fee values(  20190013 ,  20196013  ,    35000, 'paid');
+insert into fee values(  20190014 ,  20196014  ,    33000 ,'paid');
+insert into fee values(  20190015 ,  20196015  ,    35000, 'pending');
+insert into fee values(  20190016 ,  20166016  ,    35000 ,'pending');
+insert into fee values(  20190017 ,  20166017  ,    35000 ,'paid');
+insert into fee values(  20190018 ,  20166018  ,    33000, 'paid');
+insert into fee values(  20190019 ,  20166019  ,    33000 ,'paid');
+insert into fee values(  20190020 ,  20166020  ,    35000 ,'pending');
+insert into fee values(  20190021  , 20166021  ,    33000, 'paid');
+
+insert into visitors values(&visitor_id,&student_id,'&visitor_name',&mobile_no,'&address','&visited_date','&relation');
+
+
+insert into visitors values(      5001  , 20176005 ,'swathi' ,    'chennai'   ,     9884433998                          , '04-JAN-2020', 'mother');
+
+insert into visitors values(      5002 ,  20196013, 'veena'   ,   'madurai'   ,     9000366672                          , '04-JAN-2020', 'mother');
+
+insert into visitors values(      5003 ,  20196014, 'Madhan'  ,   'salem'     ,      7765788758                         , '05-JAN-2020', 'uncle');
+
+insert into visitors values(      5004 ,  20166020, 'kiran'   ,   'coimbatore' ,    6352073840                          , '06-JAN-2020', 'brother');
+
+insert into visitors values(      5005 ,  20186002, 'padma'   ,   'trichy'    ,      9542200717                          ,'06-JAN-2020', 'sister');
+
+insert into visitors values(      5006 ,  20196007, 'kushal'  ,   'Erode'     ,      9989117127                           ,'07-JAN-2020', 'brother');
+
+insert into visitors values(      5007 ,  20166018, 'Ram'    ,    'tiruttani' ,       8342073320                        , '07-JAN-2020', 'uncle');
+
+insert into visitors values(      5008 ,  20166016, 'Jyothi'  ,   'salem'     ,        9884966865                       , '07-JAN-2020', 'Cousin');
+
+insert into visitors values(      5009 ,  20166019, 'Swapna'  ,   'madurai'   ,         9030609319                       , '08-JAN-2020', 'Mother');
+
+insert into visitors values(      5010 ,  20186001, 'Yogendra' ,  'arakonam'   ,         7986435797                      ,'09-JAN-2020', 'brother');
+
+insert into laundry values(&token,&student_id,&no_of_kgs,&amount,'&status');
+
+insert into laundry values(      3008,   20176005   ,       5    ,    150 ,'paid');
+insert into laundry values(      3009 ,  20186001   ,       7    ,    240 ,'paid');
+insert into laundry values(      3010 ,  20186002   ,       6    ,    200 ,'not paid');
+insert into laundry values(      3001 ,  20186006   ,       8    ,    270 ,'paid');
+insert into laundry values(      3002 ,  20176004   ,       5    ,    150 ,'paid');
+insert into laundry values(      3003 ,  20176010   ,       6    ,    200, 'not paid');
+insert into laundry values(      3004 ,  20166019   ,       7    ,    240 ,'not paid');
+insert into laundry values(      3005 ,  20196011  ,        8    ,    270, 'paid');
+insert into laundry values(      3006 ,  20196014  ,        6    ,    200, 'paid');
+insert into laundry values(      3007 ,  20176009  ,        7    ,    240, 'not paid');
+
+insert into belongs values(&mess_incharge_id,&mess_id);
+
+insert into belongs values(             201    ,    101);
+insert into belongs values(             202   ,     104);
+insert into belongs values(             203   ,     102);
+insert into belongs values(             204   ,     102);
+insert into belongs values(             205   ,     103);
+insert into belongs values(             206   ,     103);
+insert into belongs values(             207   ,     104);
+insert into belongs values(             208   ,     104);
+insert into belongs values(             209   ,     101);
+insert into belongs values(	     210   ,     101);
+insert into belongs values( 202     ,   101);
+insert into belongs values(204      ,  103);
+insert into report values(&student_id,&repair_id);
+
+insert into report values(  20166017    ,   2010);
+insert into report values(  20166021    ,   2009);
+insert into report values(  20176004   ,    2002);
+insert into report values(  20176005   ,    2007);
+insert into report values(  20176010   ,    2004);
+insert into report values(  20186001   ,    2005);
+insert into report values(  20186003   ,    2006);
+insert into report values(  20186006   ,    2001);
+insert into report values(  20196014   ,    2008);
+insert into report values(  20196015   ,    2003);
+
+
+SQL> create sequence num_count
+  2  increment by 1
+  3  start with 0
+  4  minvalue -1
+  5  maxvalue 1000;
+
+Sequence created.
+
+select object_name, object_type
+        from user_objects
+    where object_type in ( 'PROCEDURE', 'FUNCTION' );
+
+
+
+
+
+

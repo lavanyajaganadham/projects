@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>STUDENT DETAILS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <form method="POST" action="dbms_backend.jsp" >
+            <table border="1" align="center" width="400" bgcolor="#CCCCCC">
+                <caption> FORM </caption>
+                <tr>
+                    <th> emter the student id</th>
+                    <td>
+            <input type="text" placeholder="enter student_id" name="student_id" 
+                     required /> </td>
+                </tr>
+                <tr>
+                    <tr>
+                <th>enter DOB</th>
+                <td><input type="text"  name="dob" required pattern="^(([0-9])|([0-2][0-9])|([3][0-1]))\-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\-\d{4}$" /></td>
+            </tr>
+            <tr>
+              <th> enter name </th>
+                <td><input type="text" placeholder="name" name="student_name" required /></td>
+            </tr>
+            <tr>
+                <th>enter father name </th>
+                <td><input type="text" placeholder="father name" name="father_name" required /></td>
+            </tr>
+            <tr>
+                <th>enter the department</th>
+                <td><input type="text" placeholder="department" name="dep" required /> </td>
+            </tr>
+            <tr> 
+                <th>select year </th>
+                <td><select id="year" name="year">
+                        <option >1</option>
+                        <option >2</option>
+                        <option >3</option>
+                        <option>4</option>
+                    </select></td> 
+            </tr>
+            <tr>
+            <th> enter address</th>
+                <td> <textarea rows="8" cols="20" name="address" ></textarea></td>  
+            </tr>
+            <tr>
+                <th> enter mobile number </th>
+                <td><input type="text" name="num" maxlength="10" required /></td>
+               </tr>
+               <tr>
+                   <th>enter email id</th>
+                   <td><input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" /></td>
+               </tr>
+               <tr>
+                   <th> select gender</th>
+                   <td>
+                   male <input type="radio" name="g" value="M"/>
+                   female <input type="radio" name="g" value="F"/>
+                   </td>
+               </tr>
+               <tr>
+                    <th>enter mess id</th>
+                    <td> <input type="text"  placeholder="enter mess_id" name="mess_id" required /></td>
+                </tr>
+                <tr>
+                    <th> enter hostel id </th>
+                    <td><input type="text"  placeholder="hostel_id" name="hostel_id" required /></td>
+                </tr>
+                <tr>
+                    <th>enter the room id</th>
+                    <td> <input type="text" placeholder="room_id" name="room_id" required />
+                    </td>
+            </tr> 
+               <tr>
+                   <td colspan="2"  align="center">
+            <input type="submit" value="submit"/>
+            <input type="reset" value="reset"/>
+                   </td>
+               </tr>
+            </table>
+            </form>
+          
+    </body>
+</html>

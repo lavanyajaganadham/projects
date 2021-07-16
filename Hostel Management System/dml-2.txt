@@ -1,0 +1,193 @@
+QUERY:
+select name from mess_employee where mess_incharge_id in ( select mess_incharge_id from belongs where mess_id=103);
+select student_name from student where student_id in(select student_id from fee where fee_status='pending');
+select * from student where student_id in (select student_id from outing where to_date > '12-JAN-2020');
+select repair_id,repair_details,status from repairs where repair_id in(select repair_id from report where student_id=20186001 );
+ select hostel_incharge_id,name from hostel_employee where hostel_id in
+(select hostel_id from room where room_id in(select room.room_id from room inner join student on room.room_id=student.room_id and student.student_id=20186001));
+select facilities.room_id,student.student_id,student.student_name,facilities.tables,facilities.chairs,facilities.tubelights,facilities.beds,facilities.fans from facilities 
+inner join student on facilities.room_id=student.room_id and student.student_id=20186001;
+select hostel_id,count(student_id) from student group by hostel_id;
+
+select count(repair_id) from report where student_id in
+(select student_id from student where hostel_id in(select hostel_id from hostel where hostel_name='malligai'));
+
+select report.repair_id,repairs.room_id,repairs.repair_details,repairs.status from report inner join repairs on report.repair_id=repairs.repair_id and report.student_id in
+(select student_id from student where hostel_id in(select hostel_id from hostel where hostel_name='malligai'));
+
+VIEWS:
+create or replace view laun_fee_pending as
+select student.student_id,student.student_name,student.hostel_id,hostel.hostel_name from student inner join hostel on student.hostel_id=hostel.hostel_id 
+and student.student_id in(select student_id from laundry where status='not paid'); 
+
+create or replace view count as
+select hostel_id,count(student_id) as nonveg_count from student where mess_id in(select mess_id from mess where mess_type='non-veg') group by hostel_id;
+
+create or replace view nonvcount as
+select count.hostel_id, hostel.hostel_name,count.nonveg_count from hostel inner join count on hostel.hostel_id = count.hostel_id;
+
+create or replace view stu_details as
+select * from student where student_id in(select student_id from visitors where visited_date='7-JAN-2020');
+
+PROCEDURE:
+set serveroutput on size 1000000;
+create or replace procedure mess_incharge_details(id in number,det out sys_refcursor) as
+begin
+open det for 
+select mess_incharge_id,name from mess_employee where mess_incharge_id in(select mess_incharge_id from belongs where mess_id in
+(select mess_id from student where student_id =mess_incharge_details.id));
+end;
+/
+
+create or replace procedure stud_det(year in number,hos_name in varchar,det out sys_refcursor)as
+begin
+open det for
+select * from student where year=stud_det.year and hostel_id in(select hostel_id from hostel where hostel_name=stud_det.hos_name);
+end;
+/
+
+create or replace procedure type(ty in varchar,det out sys_refcursor)as
+begin
+open det for
+select hostel.hostel_id,hostel.hostel_name,hostel_employee.hostel_incharge_id,hostel_employee.name,hostel_employee.mobile_number from hostel inner join hostel_employee on
+hostel.hostel_id=hostel_employee.hostel_id and hostel.hostel_type=type.ty;
+end;
+/ 
+
+create or replace procedure cnum(name in varchar,count out sys_refcursor)as
+begin
+open count for
+select count(student_id) from fee where student_id in
+(select student.student_id from student inner join hostel on hostel.hostel_id=student.hostel_id and hostel.hostel_name=cnum.name) and fee_status='pending';
+end;
+/
+
+create or replace procedure snum(name in varchar,dep in varchar,count out sys_refcursor) as
+begin
+open count for
+select count(student_id) from student where hostel_id in(select hostel_id from hostel where hostel_name=snum.name) and department=snum.dep;
+end;
+/
+
+FUNCTIONS:
+create or replace function laun_count(name in varchar)
+return sys_refcursor
+as
+det sys_refcursor;
+begin
+open det for
+select sum(no_of_kgs) from laundry where student_id in
+(select student.student_id from student inner join hostel on hostel.hostel_id=student.hostel_id and hostel.hostel_name=laun_count.name);
+return det;
+end;
+/
+select laun_count('malligai')from dual;
+
+create or replace function reason
+return sys_refcursor
+as
+det sys_refcursor;
+begin
+open det for
+select reason as most_frequently_order from outing group by reason order by count(reason) desc;
+return det;
+end;
+/
+
+select reason()from dual;
+
+create or replace function  hos_rep(name in varchar)
+return sys_refcursor
+as
+det sys_refcursor;
+begin
+open det for
+select repairs.room_id,repairs.repair_details,repairs.status from report inner join repairs on 
+report.repair_id=repairs.repair_id and report.student_id in
+(select student.student_id from student inner join hostel on hostel.hostel_id=student.hostel_id and hostel.hostel_name=hos_rep.name);
+return det;
+end;
+/
+
+select hos_rep('mullai')from dual;
+
+create or replace function leave_det(name in varchar)
+return sys_refcursor
+as
+det sys_refcursor;
+begin
+open det for
+select room_id,student_id,student_name from student
+ where student_id in (select student.student_id from student inner join hostel on hostel.hostel_id=student.hostel_id and hostel.hostel_name=leave_det.name
+minus
+select student_id from outing where to_date>'12-JAN-2020');
+
+return det;
+end;
+/
+
+select leave_det('malligai') from dual;
+
+create or replace function student_hos(name in varchar,year in number)
+return sys_refcursor
+as
+det sys_refcursor;
+begin
+open det for
+select * from student where hostel_id in(select hostel_id from hostel where hostel_name=student_hos.name)
+and year=student_hos.year and student_id in
+(select student_id from fee where fee_status='pending');
+return det;
+end;
+/
+
+
+
+select student_hos('malligai',1) from dual;
+
+TRIGGERS:
+ set SERVEROUTPUT ON;
+ create or replace trigger cnum
+    after insert on student
+	for each row
+    enable
+    begin
+	UPDATE room
+     SET ROOM_OCCUPANCY=ROOM_OCCUPANCY+1
+   WHERE room_id = :NEW.room_id and hostel_id=:new.hostel_id;
+	dbms_output.put_line('inserted'); 
+    end;
+    /
+
+set serveroutput on;
+create or replace trigger filled
+before insert on student
+for each row
+enable
+declare
+n_stu_count room.CAPACITY%TYPE;
+n_ro_oc room.ROOM_OCCUPANCY%TYPE;
+begin
+if INSERTING then 
+select CAPACITY into n_stu_count from room where  room_id = :NEW.room_id and hostel_id=:new.hostel_id;
+select ROOM_OCCUPANCY into n_ro_oc  from room where  room_id = :NEW.room_id and hostel_id=:new.hostel_id;
+if(n_stu_count=n_ro_oc)
+then
+RAISE_APPLICATION_ERROR(-20123,'fully occupied room please try another room');
+end if;
+end if;
+end ;
+/
+
+set SERVEROUTPUT ON;
+create or replace trigger snum
+before insert on fee
+for each row
+  enable
+  begin
+	select num_fee.NEXTVAL into :new.fee_id from dual;
+end;
+/
+
+
+  
